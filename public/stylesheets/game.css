@@ -1,0 +1,83 @@
+body {
+  cursor: url('/images/assets/cursor/cursor-pointer.png'), auto;
+}
+
+body:active {
+  cursor: url('/images/assets/cursor/cursor-grabbing.png'), auto;
+}
+
+.game-container {
+  background-color: pink;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  width: 100vw;
+  height: 100vh;
+  overflow-y: hidden;
+
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.flower-face-container {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  position: relative;
+  width: 500px;
+  height: 500px;
+}
+
+.flower-face-image {
+  animation: rotation 3s infinite linear;
+  margin: auto;
+  transform: rotate(-20deg);
+  width: 100px;
+  height: 100px;
+}
+
+.petals {
+  position: relative;
+  width: 500px;
+  height: 500px;
+}
+
+.petal {
+  width: 52px;
+  height: 79px;
+}
+
+.falling {
+  transform-origin: center;
+  animation: fallAnimation 1s both ease-in;
+
+  -webkit-transform-origin: 100% 50%;
+  -webkit-animation: fallAnimation 1s both ease-in;
+}
+
+.text-image {
+  margin: 0 auto;
+  width: 759px;
+  height: 96px;
+  visibility: hidden;
+}
+
+@keyframes rotation {
+  50% {
+    transform: rotate(20deg);
+  }
+  100% {
+    transform: rotate(-20deg);
+  }
+}
+
+@keyframes fallAnimation {
+  0% {
+    -webkit-transform: translateY(0px);
+  }
+  100% {
+    -webkit-transform: translateY(1000px);
+  }
+}
