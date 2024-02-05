@@ -1,6 +1,11 @@
+# bugs to fix:
+# - once a petal is let go of, that should not allow the user to click it again to change game state
+# - dynamic background alpha value (what is going on with it?)
+
 require 'sinatra'
 require 'tilt/erubis'
 require 'sinatra/reloader'
+require 'json'
 
 WIDTH = 450
 HEIGHT = 425
@@ -17,35 +22,70 @@ configure do
   set :server_settings, :Threads => '0:16', :Verbose => true
 end
 
-before "/" do
-  session[:range] = random_range(7, 16)
-  session[:love] = true
-  session[:face_image] = "normal_face.png"
-  session[:count_down] = session[:range]
+before "/love" do
+  initialize_game
 end
 
-get "/" do
-  @range = session[:range]
-  @love = session[:love]
-  @face_image = session[:face_image]
-  @field_list = generate_petals
+get "/love" do
+  initialize_variables
+
   erb :game
 end
 
-before "/change-face" do
+before "/love/change-face" do
   @range = session[:range]
   @love = session[:love]
   @face_image = session[:face_image]
   session[:count_down] -= 1
+  session[:game_over] = game_over?
 end
 
-get "/change-face" do
-  toggle_love
+get "/love/change-face" do
   @count_down = session[:count_down]
+  @game_over = session[:game_over]
+  load_button = nil
+
+  toggle_love
   changes = change_face
 
-  [ 200, {},  [changes[:face_image], "split-here", changes[:text_image]]]
+  if @count_down == 0
+    load_button = (erb :_play_again_partial, :layout => false)
+  end
+
+  content_type :json
+  {faceImage: changes[:face_image], textImage: changes[:text_image], partial: load_button}.to_json
+  #[ 200, {},  [changes[:face_image], "split-here", changes[:text_image]]]
   # (erb :_face_partial, :layout => false, :locals => { :face_image => @face_image })
+end
+
+before "/love/play-again" do
+  initialize_game
+end
+
+get "/love/play-again" do
+  initialize_variables
+
+  erb :_flower_partial, :layout => false, :locals => { :field_list => @field_list }
+end
+
+def initialize_game
+  session[:range] = random_range(7, 16)
+  session[:love] = true
+  session[:face_image] = "normal_face.png"
+  session[:count_down] = session[:range]
+  session[:game_over] = false
+end
+
+def initialize_variables
+  @range = session[:range]
+  @love = session[:love]
+  @face_image = session[:face_image]
+  @field_list = generate_petals
+  @game_over = session[:game_over]
+end
+
+def game_over?
+  @count_down == 0
 end
 
 def toggle_love

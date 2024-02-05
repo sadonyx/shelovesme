@@ -6,6 +6,7 @@ gem "erubis"
 gem "webrick"
 gem 'pg', '1.5.3'
 gem "rackup"
+gem 'json'
 group :production do
   gem "puma"
 end

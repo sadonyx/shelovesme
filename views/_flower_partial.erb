@@ -1,0 +1,13 @@
+<div id="ff-container" class="flower-face-container">
+  <% @field_list.each do |obj| %>
+    <%== %Q[<img
+      src="/images/assets/misc/flower_petal.png"
+      id="#{obj[:id]}"
+      class="petal"
+      style="position:absolute;top:#{obj[:y]}px;left:#{obj[:x]}px;transform:rotate(#{obj[:orientation]}deg);"
+      draggable="false"
+    />] %>
+  <% end %>
+
+  <img id="face" class="flower-face-image" src="/images/assets/faces/<%= @face_image %>" draggable="false"/>
+</div>

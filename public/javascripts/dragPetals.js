@@ -1,5 +1,6 @@
-const petals = document.getElementsByClassName('petal');
-const text = document.getElementById('text')
+var petals = document.getElementsByClassName('petal');
+var text = document.getElementById('text')
+var clickedPetals = []
 var petalId;
 var offX;
 var offY;
@@ -14,26 +15,35 @@ window.addEventListener('mousemove', function() {
 });
 
 function setPetalId(e) {
-  petalId = e.target.id
+  var target = e.target.id;
+  if (!clickedPetals.includes(target)) {
+    petalId = target;
+  };
 }
 
 function addListeners() {
-    for (let petal of petals) {
-      petal.addEventListener('mousedown', setPetalId, false);
-      petal.addEventListener('mousedown', mouseDown, false);
-    }
+  petals.forEach((petal) => {
+    petal.addEventListener('mousedown', setPetalId, false);
+    petal.addEventListener('mousedown', mouseDown, false);
+  })
 }
 
 function mouseUp() {
+  alternate ? pluckOneUp.play() : pluckTwoUp.play();
+  alternate = !alternate;
+
   var div = document.getElementById(petalId);
   div.classList.add('falling');
   window.removeEventListener('mousemove', divMove, true);
-  changeFace()
+  if (!clickedPetals.includes(petalId)) {
+    changeFace();
+    clickedPetals.push(petalId);
+  }
   window.removeEventListener('mouseup', mouseUp, true);
-  document.removeEventListener('DOMContentLoaded', hideBrokenImage, true);
 }
 
 function mouseDown(e) {
+  pluckDown.play();
   var div = document.getElementById(petalId);
   offY= e.clientY-parseInt(div.offsetTop);
   offX= e.clientX-parseInt(div.offsetLeft);
@@ -49,7 +59,7 @@ function divMove(e) {
 }
 
 function changeFace() {
-  const url = window.location.pathname + 'change-face'
+  const url = window.location.pathname + '/change-face'
 
   const request = new XMLHttpRequest();
 
@@ -61,13 +71,21 @@ function changeFace() {
     
   request.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-      res = this.responseText.split('split-here')
-      document.getElementById("face").src = res[0];
-      document.getElementById("text").src = res[1];
+      let res = JSON.parse(this.responseText)
+      document.getElementById("face").src = res.faceImage;
+      document.getElementById("text").src = res.textImage;
+      if (res.partial) {
+        form = document.createElement('form')
+        form.id = 'play-again-form'
+        form.action = "/love/play-again"
+        form.method = "GET"
+        form.classList.add('play-again')
+        form.innerHTML = res.partial
+        document.getElementById('div-reset').appendChild( form)
+      }
     }
   };
 
   request.open("GET", url, true)
   request.send();
 }
-

@@ -7,7 +7,7 @@ body:active {
 }
 
 .game-container {
-  background-color: pink;
+  background-color: transparent;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -33,7 +33,7 @@ body:active {
 .flower-face-image {
   animation: rotation 3s infinite linear;
   margin: auto;
-  transform: rotate(-20deg);
+  transform: rotate(-10deg);
   width: 100px;
   height: 100px;
 }
@@ -64,12 +64,27 @@ body:active {
   visibility: hidden;
 }
 
+button.play-again {
+  margin: auto;
+  width: 100px;
+}
+
+form.play-again {
+  width: 100%;
+  height: 50px;
+}
+
+div.play-again {
+  width: 100%;
+  height: 50px;
+}
+
 @keyframes rotation {
   50% {
-    transform: rotate(20deg);
+    transform: rotate(10deg);
   }
   100% {
-    transform: rotate(-20deg);
+    transform: rotate(-10deg);
   }
 }
 

@@ -1,20 +1,14 @@
-<div class="game-container">
+<div id="g-container" class="game-container">
 
   <img id="text" src="" class="text-image">
 
-  <div class="flower-face-container">
-    <% @field_list.each do |obj| %>
-      <%== %Q[<img
-        src="/images/assets/misc/flower_petal.png"
-        id="#{obj[:id]}"
-        class="petal"
-        style="position:absolute;top:#{obj[:y]}px;left:#{obj[:x]}px;transform:rotate(#{obj[:orientation]}deg);"
-        draggable="false"
-      />] %>
-    <% end %>
+  <%== partial(:_flower_partial, :field_list => @field_list) %>
 
-    <img id="face" class="flower-face-image" src="/images/assets/faces/<%= @face_image %>" draggable="false"/>
-    
-  </div>
+  <div id="div-reset" class="play-again"></div>
+
 </div>
 <script src="/javascripts/dragPetals.js"></script>
+<script src="/javascripts/playAgain.js"></script>
+<script src="/javascripts/backgroundMusic.js"></script>
+
+<!-- <script src="/javascripts/background.js"></script> -->
