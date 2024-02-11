@@ -1,5 +1,5 @@
 var song = document.createElement('audio');
-song.setAttribute('src', '/sounds/loves-me.ogg');
+song.setAttribute('src', '/sounds/loves-me-zade-keys.ogg');
 song.loop = true;
 song.setAttribute('autoplay', 'autoplay');
 

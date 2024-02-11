@@ -32,8 +32,8 @@ function mouseUp() {
   alternate ? pluckOneUp.play() : pluckTwoUp.play();
   alternate = !alternate;
 
-  var div = document.getElementById(petalId);
-  div.classList.add('falling');
+  var petal = document.getElementById(petalId);
+  petal.classList.add('falling');
   window.removeEventListener('mousemove', divMove, true);
   if (!clickedPetals.includes(petalId)) {
     changeFace();
@@ -44,9 +44,10 @@ function mouseUp() {
 
 function mouseDown(e) {
   pluckDown.play();
-  var div = document.getElementById(petalId);
-  offY= e.clientY-parseInt(div.offsetTop);
-  offX= e.clientX-parseInt(div.offsetLeft);
+  var petal = document.getElementById(petalId);
+  dynamicKeyFramesAdd(petal.style.transform)
+  offY= e.clientY-parseInt(petal.offsetTop);
+  offX= e.clientX-parseInt(petal.offsetLeft);
   window.addEventListener('mouseup', mouseUp, true)
   window.addEventListener('mousemove', divMove, true);
 }

@@ -1,4 +1,5 @@
 body {
+  cursor: default;
   cursor: url('/images/assets/cursor/cursor-pointer.png'), auto;
 }
 
@@ -50,10 +51,7 @@ body:active {
 }
 
 .falling {
-  transform-origin: center;
   animation: fallAnimation 1s both ease-in;
-
-  -webkit-transform-origin: 100% 50%;
   -webkit-animation: fallAnimation 1s both ease-in;
 }
 
@@ -64,12 +62,31 @@ body:active {
   visibility: hidden;
 }
 
+.play-again > img {
+  cursor: inherit;
+  height: 50px;
+  width: auto;
+}
+
+.play-again > img:active {
+  height: 50px;
+  transform: scale(0.95);
+  width: auto;
+}
+
 button.play-again {
-  margin: auto;
-  width: 100px;
+  border: none;
+  cursor: inherit;
+  appearance: none;
+  background-color: inherit;
+  display: flex;
+  justify-content: center;
+  width: fit-content;
 }
 
 form.play-again {
+  display: flex;
+  justify-content: center;
   width: 100%;
   height: 50px;
 }
@@ -78,6 +95,7 @@ div.play-again {
   width: 100%;
   height: 50px;
 }
+
 
 @keyframes rotation {
   50% {
@@ -88,11 +106,11 @@ div.play-again {
   }
 }
 
-@keyframes fallAnimation {
+/* @keyframes fallAnimation {
   0% {
     -webkit-transform: translateY(0px);
   }
   100% {
     -webkit-transform: translateY(1000px);
   }
-}
+} */
