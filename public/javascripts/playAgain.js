@@ -5,7 +5,7 @@ window.addEventListener('mouseup', function() {
 })
 
 function playAgain(e) {
-  const url = window.location.pathname + '/play-again';
+  const url = window.location.pathname + 'play-again';
   const request = new XMLHttpRequest();
     
   request.onreadystatechange = function() {

@@ -22,17 +22,17 @@ configure do
   set :server_settings, :Threads => '0:16', :Verbose => true
 end
 
-before "/love" do
+before "/" do
   initialize_game
 end
 
-get "/love" do
+get "/" do
   initialize_variables
 
   erb :game
 end
 
-before "/love/change-face" do
+before "/change-face" do
   @range = session[:range]
   @love = session[:love]
   @face_image = session[:face_image]
@@ -40,7 +40,7 @@ before "/love/change-face" do
   session[:game_over] = game_over?
 end
 
-get "/love/change-face" do
+get "/change-face" do
   @count_down = session[:count_down]
   @game_over = session[:game_over]
   load_button = nil
@@ -58,11 +58,11 @@ get "/love/change-face" do
   # (erb :_face_partial, :layout => false, :locals => { :face_image => @face_image })
 end
 
-before "/love/play-again" do
+before "/play-again" do
   initialize_game
 end
 
-get "/love/play-again" do
+get "/play-again" do
   initialize_variables
 
   erb :_flower_partial, :layout => false, :locals => { :field_list => @field_list }

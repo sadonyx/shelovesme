@@ -60,7 +60,7 @@ function divMove(e) {
 }
 
 function changeFace() {
-  const url = window.location.pathname + '/change-face'
+  const url = window.location.pathname + 'change-face'
 
   const request = new XMLHttpRequest();
 
@@ -78,7 +78,7 @@ function changeFace() {
       if (res.partial) {
         form = document.createElement('form')
         form.id = 'play-again-form'
-        form.action = "/love/play-again"
+        form.action = "/play-again"
         form.method = "GET"
         form.classList.add('play-again')
         form.innerHTML = res.partial
