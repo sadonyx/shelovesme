@@ -1,6 +1,7 @@
 body {
   cursor: default;
   cursor: url('/images/assets/cursor/cursor-pointer.png'), auto;
+  overflow: hidden;
 }
 
 body:active {

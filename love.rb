@@ -53,7 +53,7 @@ get "/change-face" do
   end
 
   content_type :json
-  {faceImage: changes[:face_image], textImage: changes[:text_image], partial: load_button}.to_json
+  {faceImage: changes[:face_image], textImage: changes[:text_image], favIcon: changes[:fav_icon], delay: changes[:delay], partial: load_button}.to_json
   #[ 200, {},  [changes[:face_image], "split-here", changes[:text_image]]]
   # (erb :_face_partial, :layout => false, :locals => { :face_image => @face_image })
 end
@@ -71,7 +71,7 @@ end
 def initialize_game
   session[:range] = random_range(7, 16)
   session[:love] = true
-  session[:face_image] = "normal_face.png"
+  session[:face_image] = "normal-face.png"
   session[:count_down] = session[:range]
   session[:game_over] = false
 end
@@ -95,26 +95,31 @@ end
 def change_face
   face_name = ''
   text_name = ''
+  delay = false
 
   if @love == true && @count_down >= 1
-    face_name = "loves_me_face"
-    text_name = "loves_me_text"
+    face_name = "loves-me-face"
+    text_name = "loves-me-text"
   elsif @love == false && @count_down >= 1
-    face_name = "loves_me_not_face"
-    text_name = "loves_me_not_text"
+    face_name = "loves-me-not-face"
+    text_name = "loves-me-not-text"
   elsif @love == true && @count_down == 0
-    face_name = "really_loves_me_face"
-    text_name = "really_loves_me_text"
+    delay = true
+    face_name = "really-loves-me-face"
+    text_name = "really-loves-me-text"
     # setFinalVerdict("Really Loves Me")
   elsif @love == false && @count_down == 0
-    face_name = "really_loves_me_not_face"
-    text_name = "really_loves_me_not_text"
+    delay = true
+    face_name = "really-loves-me-not-face"
+    text_name = "really-loves-me-not-text"
     # setFinalVerdict("Really Loves Me")
   end
 
   {
     face_image: "/images/assets/faces/#{face_name}.png",
-    text_image: "/images/assets/text/#{text_name}.png"
+    text_image: "/images/assets/text/#{text_name}.png",
+    fav_icon: face_name + '.ico',
+    delay: delay
   }
 end
 
