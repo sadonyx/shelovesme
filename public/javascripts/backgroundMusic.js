@@ -24,3 +24,8 @@ song.addEventListener('ended', function() {
 gameDOM.addEventListener('mouseover', function() {
   song.play(); 
 })
+
+var volume = document.querySelector("#volume");
+volume.addEventListener("change", function(e) {
+  song.volume = e.currentTarget.value / 100;
+})

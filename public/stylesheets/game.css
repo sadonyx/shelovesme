@@ -1,10 +1,16 @@
-body {
+@font-face {
+  font-family: 'loveFont';
+  src: url('/fonts/love.ttf');
+}
+
+html, body {
   cursor: default;
   cursor: url('/images/assets/cursor/cursor-pointer.png'), auto;
+  font-family: 'loveFont';
   overflow: hidden;
 }
 
-body:active {
+html, body:active {
   cursor: url('/images/assets/cursor/cursor-grabbing.png'), auto;
 }
 
@@ -95,6 +101,35 @@ form.play-again {
 div.play-again {
   width: 100%;
   height: 50px;
+}
+
+.credits {
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 5px;
+  color: #615630;
+  position: sticky;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  font-size: 0.85rem;
+  padding: 5px;
+  bottom: 75px;
+  width: fit-content;
+}
+
+.credits:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
 }
 
 
