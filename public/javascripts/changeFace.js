@@ -34,8 +34,8 @@ function changeFace() {
         } else {
           if (isWinner !== null && !isWinner) bellMeowBaaa.play(); // play lose sound
           document.getElementById("text").src = res.textImage;
-          document.getElementById("text").style.visibility = "visible";
           document.getElementById("face").src = res.faceImage;
+          document.getElementById("text").style.visibility = "visible";
         }
 
         changeFavIcon(res.favIcon);
