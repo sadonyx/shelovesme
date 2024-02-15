@@ -14,6 +14,9 @@ pluckOneUp.setAttribute('src', '/sounds/pluck-1-up.ogg')
 var pluckTwoUp = document.createElement('audio');
 pluckTwoUp.setAttribute('src', '/sounds/pluck-2-up.ogg')
 
+var bellMeowBaaa = document.createElement('audio');
+bellMeowBaaa.setAttribute('src', '/sounds/bell-meow-baaa.ogg')
+
 var gameDOM = document.getElementById('g-container')
 
 song.addEventListener('ended', function() {
@@ -23,4 +26,9 @@ song.addEventListener('ended', function() {
 
 gameDOM.addEventListener('mouseover', function() {
   song.play(); 
+})
+
+var volume = document.querySelector("#volume");
+volume.addEventListener("change", function(e) {
+  song.volume = e.currentTarget.value / 100;
 })

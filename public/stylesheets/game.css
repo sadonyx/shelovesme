@@ -1,11 +1,135 @@
-body {
-  cursor: default;
-  cursor: url('/images/assets/cursor/cursor-pointer.png'), auto;
-  overflow: hidden;
+@font-face {
+  font-family: 'loveFont';
+  src: url('/fonts/love.ttf');
 }
 
-body:active {
+html, body {
+  cursor: default;
+  cursor: url('/images/assets/cursor/cursor-pointer.png'), auto;
+  font-family: 'loveFont';
+  width: 100%;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+
+html, body:active {
   cursor: url('/images/assets/cursor/cursor-grabbing.png'), auto;
+}
+
+@media only screen and (min-device-width:320px)  { 
+  /* smartphones, iPhone, portrait 480x320 phones */
+  .flower-face-container {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    position: relative;
+    width: 500px;
+    height: 500px;
+  }
+
+  .flower-face-image {
+    animation: rotation 3s infinite linear;
+    margin: auto;
+    transform: rotate(-10deg);
+    width: 100px;
+    height: 100px;
+  }
+
+  .petal {
+    width: 52px;
+    height: 79px;
+  }
+
+  .text-image {
+    margin: 0 auto;
+    width: 709;
+    height: 46px;
+    visibility: hidden;
+  }
+}
+@media (min-width:481px)  { 
+  /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */
+  
+}
+@media (min-width:641px)  {
+  /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */
+  .flower-face-container {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    position: relative;
+    width: 500px;
+    height: 500px;
+  }
+
+  .flower-face-image {
+    animation: rotation 3s infinite linear;
+    margin: auto;
+    transform: rotate(-10deg);
+    width: 100px;
+    height: 100px;
+  }
+
+  .petal {
+    width: 52px;
+    height: 79px;
+  }
+
+  .text-image {
+    margin: 0 auto;
+    width: 729;
+    height: 66px;
+    visibility: hidden;
+  }
+}
+@media (min-width:961px)  {
+  /* tablet, landscape iPad, lo-res laptops ands desktops */
+  .flower-face-container {
+    /* zoom: 1.5; */
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    position: relative;
+    width: 500px;
+    height: 500px;
+  }
+
+  .flower-face-image {
+    animation: rotation 3s infinite linear;
+    margin: auto;
+    transform: rotate(-10deg);
+    width: 100px;
+    height: 100px;
+  }
+
+  .petal {
+    width: 52px;
+    height: 79px;
+  }
+
+  .text-image {
+    margin: 0 auto;
+    width: 729;
+    height: 66px;
+    visibility: hidden;
+  }
+  
+  .text-image {
+    margin: 0 auto;
+    width: 759px;
+    height: 96px;
+    visibility: hidden;
+  }
+}
+@media (min-width:1025px) { 
+  /* big landscape tablets, laptops, and desktops */ 
+}
+@media (min-width:1281px) { 
+  /* hi-res laptops and desktops */
+  
 }
 
 .game-container {
@@ -16,51 +140,15 @@ body:active {
   align-content: center;
   width: 100vw;
   height: 100vh;
-  overflow-y: hidden;
 
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
-}
-
-.flower-face-container {
-  display: flex;
-  flex-direction: column;
-  margin: 0 auto;
-  position: relative;
-  width: 500px;
-  height: 500px;
-}
-
-.flower-face-image {
-  animation: rotation 3s infinite linear;
-  margin: auto;
-  transform: rotate(-10deg);
-  width: 100px;
-  height: 100px;
-}
-
-.petals {
-  position: relative;
-  width: 500px;
-  height: 500px;
-}
-
-.petal {
-  width: 52px;
-  height: 79px;
-}
+  }
 
 .falling {
   animation: fallAnimation 1s both ease-in;
   -webkit-animation: fallAnimation 1s both ease-in;
-}
-
-.text-image {
-  margin: 0 auto;
-  width: 759px;
-  height: 96px;
-  visibility: hidden;
 }
 
 .play-again > img {
@@ -95,6 +183,35 @@ form.play-again {
 div.play-again {
   width: 100%;
   height: 50px;
+}
+
+.credits {
+  background-color: rgba(255, 255, 255, 0.15);
+  border-radius: 5px;
+  color: #615630;
+  position: sticky;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  font-size: 0.85rem;
+  padding: 5px;
+  bottom: 75px;
+  width: fit-content;
+}
+
+.credits:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
 }
 
 

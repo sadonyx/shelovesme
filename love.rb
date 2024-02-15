@@ -1,15 +1,7 @@
-# bugs to fix:
-# - once a petal is let go of, that should not allow the user to click it again to change game state
-# - dynamic background alpha value (what is going on with it?)
-
 require 'sinatra'
 require 'tilt/erubis'
 require 'sinatra/reloader'
 require 'json'
-
-WIDTH = 450
-HEIGHT = 425
-RADIUS = 78
 
 configure do
   enable :sessions
@@ -53,9 +45,14 @@ get "/change-face" do
   end
 
   content_type :json
-  {faceImage: changes[:face_image], textImage: changes[:text_image], favIcon: changes[:fav_icon], delay: changes[:delay], partial: load_button}.to_json
-  #[ 200, {},  [changes[:face_image], "split-here", changes[:text_image]]]
-  # (erb :_face_partial, :layout => false, :locals => { :face_image => @face_image })
+  {
+    faceImage: changes[:face_image],
+    textImage: changes[:text_image],
+    favIcon: changes[:fav_icon],
+    delay: changes[:delay],
+    isWinner: changes[:is_winner],
+    partial: load_button
+  }.to_json
 end
 
 before "/play-again" do
@@ -96,6 +93,7 @@ def change_face
   face_name = ''
   text_name = ''
   delay = false
+  is_winner = nil
 
   if @love == true && @count_down >= 1
     face_name = "loves-me-face"
@@ -105,11 +103,13 @@ def change_face
     text_name = "loves-me-not-text"
   elsif @love == true && @count_down == 0
     delay = true
+    is_winner = true
     face_name = "really-loves-me-face"
     text_name = "really-loves-me-text"
     # setFinalVerdict("Really Loves Me")
   elsif @love == false && @count_down == 0
     delay = true
+    is_winner = false
     face_name = "really-loves-me-not-face"
     text_name = "really-loves-me-not-text"
     # setFinalVerdict("Really Loves Me")
@@ -119,11 +119,18 @@ def change_face
     face_image: "/images/assets/faces/#{face_name}.png",
     text_image: "/images/assets/text/#{text_name}.png",
     fav_icon: face_name + '.ico',
-    delay: delay
+    delay: delay,
+    is_winner: is_winner
   }
 end
 
 def generate_petals
+
+
+  width = 450
+  height = 425
+  radius = 78
+
   num_of_petals = @range
   step = (2 * Math::PI) / num_of_petals
   field_list = []
@@ -131,8 +138,8 @@ def generate_petals
   orientation = 90;
 
   (0..num_of_petals - 1).each do |i|
-    x = (WIDTH / 2 + RADIUS * Math.cos(angle)).round
-    y = (HEIGHT / 2 + RADIUS * Math.sin(angle)).round
+    x = (width / 2 + radius * Math.cos(angle)).round
+    y = (height / 2 + radius * Math.sin(angle)).round
 
     field_list.push({
       x: x,

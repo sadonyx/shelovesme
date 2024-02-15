@@ -8,17 +8,36 @@ function changeFace() {
   img.classList.add("flower-face-image");
   img.draggable = false;
 
+  const normal = '/images/assets/faces/normal-face.png';
     
   request.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
       let res = JSON.parse(this.responseText);
       let delayBool = res.delay;
+      let isWinner = res.isWinner;
       let delayTime = delayBool ? 1500 : 0;
+
+      document.getElementById("text").style.visibility = "visible";
+      if (delayBool) { //dramatic effect before grand reveal
+        document.getElementById("text").style.visibility = "hidden";
+        document.getElementById("face").src = normal;
+      }
+
       setTimeout(() => {
         // change face and text
-        document.getElementById("face").src = res.faceImage;
-        document.getElementById("text").src = res.textImage;
-        document.getElementById("text").style.visibility = "visible";
+        if (!delayBool) {
+          document.getElementById("face").src = normal;
+          setTimeout(() => { // fluid face change
+            document.getElementById("face").src = res.faceImage;
+          }, 100)
+          document.getElementById("text").src = res.textImage;
+        } else {
+          if (isWinner !== null && !isWinner) bellMeowBaaa.play(); // play lose sound
+          document.getElementById("text").src = res.textImage;
+          document.getElementById("text").style.visibility = "visible";
+          document.getElementById("face").src = res.faceImage;
+        }
+
         changeFavIcon(res.favIcon);
         // load play again form
         if (res.partial) {
