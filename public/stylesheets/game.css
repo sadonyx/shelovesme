@@ -47,7 +47,6 @@ html, body:active {
     margin: 0 auto;
     width: 709;
     height: 46px;
-    visibility: hidden;
   }
 }
 @media (min-width:481px)  { 
@@ -82,7 +81,6 @@ html, body:active {
     margin: 0 auto;
     width: 729;
     height: 66px;
-    visibility: hidden;
   }
 }
 @media (min-width:961px)  {
@@ -114,14 +112,12 @@ html, body:active {
     margin: 0 auto;
     width: 729;
     height: 66px;
-    visibility: hidden;
   }
   
   .text-image {
     margin: 0 auto;
     width: 759px;
     height: 96px;
-    visibility: hidden;
   }
 }
 @media (min-width:1025px) { 

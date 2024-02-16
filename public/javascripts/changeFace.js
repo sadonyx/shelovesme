@@ -17,9 +17,8 @@ function changeFace() {
       let isWinner = res.isWinner;
       let delayTime = delayBool ? 1500 : 0;
 
-      document.getElementById("text").style.visibility = "visible";
       if (delayBool) { //dramatic effect before grand reveal
-        document.getElementById("text").style.visibility = "hidden";
+        document.getElementById("text").src = "/images/assets/misc/1x1.png";
         document.getElementById("face").src = normal;
       }
 
@@ -35,7 +34,6 @@ function changeFace() {
           if (isWinner !== null && !isWinner) bellMeowBaaa.play(); // play lose sound
           document.getElementById("text").src = res.textImage;
           document.getElementById("face").src = res.faceImage;
-          document.getElementById("text").style.visibility = "visible";
         }
 
         changeFavIcon(res.favIcon);
