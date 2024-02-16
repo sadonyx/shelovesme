@@ -31,9 +31,9 @@ function changeFace() {
           }, 100)
           document.getElementById("text").src = res.textImage;
         } else {
-          if (isWinner !== null && !isWinner) bellMeowBaaa.play(); // play lose sound
           document.getElementById("text").src = res.textImage;
           document.getElementById("face").src = res.faceImage;
+          if (isWinner !== null && !isWinner) bellMeowBaaa.play(); // play lose sound
         }
 
         changeFavIcon(res.favIcon);

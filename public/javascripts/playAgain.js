@@ -14,7 +14,6 @@ function playAgain(e) {
       buttonImage.addEventListener('mouseover', submitStatus);
 
       document.getElementById('text').src = '/images/assets/misc/1x1.png';
-      document.getElementById('text').src = null;
       document.getElementById('play-again-form').remove();
       document.getElementById("ff-container").innerHTML = this.responseText;
 
