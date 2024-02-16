@@ -1,7 +1,25 @@
+// initialize music
 var song = document.createElement('audio');
 song.setAttribute('src', '/sounds/loves-me-zade-keys.ogg');
 song.loop = true;
 song.setAttribute('autoplay', 'autoplay');
+
+// initialize volume controls
+const volumeIcon = document.getElementById('volume-icon');
+volumeIcon.addEventListener('click', () => {
+  song.muted = !song.muted;
+  if (song.muted) {
+    volumeIcon.src = '/images/assets/volume/mute.png';
+  } else {
+    volumeIcon.src = '/images/assets/volume/speaker.png';
+  }
+})
+
+// initialize volume slider
+// const volume = document.querySelector("#volume");
+// volume.addEventListener("change", function(e) {
+//   song.volume = e.currentTarget.value / 100;
+// })
 
 var alternate = 1;
 
@@ -26,9 +44,4 @@ song.addEventListener('ended', function() {
 
 gameDOM.addEventListener('mouseover', function() {
   song.play(); 
-})
-
-var volume = document.querySelector("#volume");
-volume.addEventListener("change", function(e) {
-  song.volume = e.currentTarget.value / 100;
 })

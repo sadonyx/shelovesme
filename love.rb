@@ -125,8 +125,6 @@ def change_face
 end
 
 def generate_petals
-
-
   width = 450
   height = 425
   radius = 78
