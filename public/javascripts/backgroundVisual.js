@@ -5,6 +5,7 @@ let basePixels = 14;
 let timeOffset = 0.01;
 
 function setup () {
+  pixelDensity(1);
   frameRate(12);
   colorMode(RGBA, 255);
   canvas = createCanvas(windowWidth + 20, windowHeight + 20);
