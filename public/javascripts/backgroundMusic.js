@@ -2,6 +2,7 @@
 var song = document.createElement('audio');
 song.setAttribute('src', '/sounds/loves-me-zade-keys.ogg');
 song.loop = true;
+song.volume = 100;
 song.setAttribute('autoplay', 'autoplay');
 
 // initialize volume controls
@@ -24,16 +25,19 @@ volumeIcon.addEventListener('click', () => {
 var alternate = 1;
 
 var pluckDown = document.createElement('audio');
-pluckDown.setAttribute('src', '/sounds/pluck-down.ogg')
+pluckDown.setAttribute('src', '/sounds/pluck-down.ogg');
+pluckDown.volume = 100;
 
 var pluckOneUp = document.createElement('audio');
-pluckOneUp.setAttribute('src', '/sounds/pluck-1-up.ogg')
+pluckOneUp.setAttribute('src', '/sounds/pluck-1-up.ogg');
+pluckOneUp.volume = 100;
 
 var pluckTwoUp = document.createElement('audio');
 pluckTwoUp.setAttribute('src', '/sounds/pluck-2-up.ogg')
 
 var bellMeowBaaa = document.createElement('audio');
-bellMeowBaaa.setAttribute('src', '/sounds/bell-meow-baaa.ogg')
+bellMeowBaaa.setAttribute('src', '/sounds/bell-meow-baaa.ogg');
+bellMeowBaaa.volume = 100;
 
 var gameDOM = document.getElementById('g-container')
 
@@ -42,6 +46,6 @@ song.addEventListener('ended', function() {
     this.play();
 }, false);
 
-gameDOM.addEventListener('mouseover', function() {
+gameDOM.addEventListener(isMobile ? 'touchstart' : 'mouseover', function() {
   song.play(); 
 })
