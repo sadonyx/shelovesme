@@ -4,6 +4,12 @@ let rows, columns;
 let basePixels = 14;
 let timeOffset = 0.01;
 
+window.onresize = function() {
+    document.body.height = window.innerHeight;
+}
+window.onresize(); // called to initially set the height.
+
+
 function setup () {
   pixelDensity(1);
   frameRate(12);

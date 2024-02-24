@@ -8,7 +8,7 @@ html, body {
   cursor: url('/images/assets/cursor/cursor-pointer.png'), auto;
   font-family: 'loveFont';
   width: 100vw;
-  height: 100vh;
+  height: 100dvh;
   margin: 0px;
   padding: 0px;
   overflow: hidden;
@@ -49,6 +49,11 @@ html, body:active {
     margin: 0 auto;
     width: 709;
     height: 46px;
+  }
+
+  button.play-again {
+    position: absolute;
+    bottom: 25%;
   }
 }
 @media (min-width:481px)  { 
