@@ -12,13 +12,14 @@ html, body {
   margin: 0px;
   padding: 0px;
   overflow: hidden;
+  -webkit-touch-callout: none;
 }
 
 html, body:active {
   cursor: url('/images/assets/cursor/cursor-grabbing.png'), auto;
 }
 
-@media only screen and (min-device-width:320px)  { 
+@media only screen and (min-device-width:320px) and (max-device-width:500px)  { 
   /* smartphones, iPhone, portrait 480x320 phones */
   .flower-face-container {
     display: flex;
@@ -29,7 +30,6 @@ html, body:active {
     height: 500px;
     left: 50%;
     margin-left: -250px;
-
   }
 
   .flower-face-image {

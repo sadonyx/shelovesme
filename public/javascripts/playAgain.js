@@ -1,6 +1,6 @@
-window.addEventListener('mouseup', function() {
+window.addEventListener(isMobile ? 'touchend' : 'mouseup', function() {
   if (!!document.getElementById('play-again-button')) {
-    document.getElementById('play-again-button').addEventListener('mouseup', submitStatus);
+    document.getElementById('play-again-button').addEventListener(isMobile ? 'touchend' : 'mouseup', submitStatus);
   }
 })
 
@@ -11,7 +11,7 @@ function playAgain(e) {
   request.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
       const buttonImage = document.getElementById('play-again-image');
-      buttonImage.addEventListener('mouseover', submitStatus);
+      buttonImage.addEventListener(isMobile ? 'touchstart' : 'mouseover', submitStatus);
 
       document.getElementById('text').src = '/images/assets/misc/1x1.png';
       document.getElementById('play-again-form').remove();
@@ -37,7 +37,7 @@ function attachFormSubmitEvent(formId){
 
 function submitStatus(){
   attachFormSubmitEvent('play-again-form');
-  document.getElementById('play-again-button').removeEventListener('mouseup', submitStatus);
+  document.getElementById('play-again-button').removeEventListener(isMobile ? 'touchend' : 'mouseup', submitStatus);
   document.getElementById('play-again-form').requestSubmit();
 };
 
