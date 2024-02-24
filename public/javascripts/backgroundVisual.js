@@ -10,6 +10,7 @@ function setup () {
   colorMode(RGBA, 255);
   canvas = createCanvas(windowWidth + 20, windowHeight + 20);
   canvas.position(0,0);
+  canvas.style('max-width', '100%');
   canvas.style('z-index', '-1');
   background(254, 247, 82);
   rows = floor(height / basePixels);

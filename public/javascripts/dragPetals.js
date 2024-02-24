@@ -5,11 +5,9 @@ var petalId;
 var offX;
 var offY;
 var touchLocation;
-var touchX;
-var touchY;
 var delay;
 
-var isMobile;
+var isMobile; // is user on mobile?
 
 window.onload = addListeners();
 
@@ -52,14 +50,12 @@ function mouseDown(e) {
   petal.style.zIndex = 100;
 
   if (isMobile) {
-    let touch = e.touches[0];
-    offY = touch.clientY - petal.getBoundingClientRect().y;
-    offX = touch.clientX - petal.getBoundingClientRect().x;
-    console.log(offX, offY)
+    touchLocation = e.touches[0];
+    offY = touchLocation.clientY - petal.getBoundingClientRect().y;
+    offX = touchLocation.clientX - petal.getBoundingClientRect().x;
   } else {
     offY = e.clientY - parseInt(petal.offsetTop);
     offX = e.clientX - parseInt(petal.offsetLeft);
-    console.log(offX, offY)
   }
   window.addEventListener(isMobile ? 'touchend' : 'mouseup', mouseUp, true)
   window.addEventListener(isMobile ? 'touchmove' : 'mousemove', petalMove, true);
@@ -69,9 +65,10 @@ function petalMove(e) {
   var petal = document.getElementById(petalId);
   //petal.style.position = 'absolute';
   if (isMobile) {
-    touchLocation = e.targetTouches[0];
-    petal.style.top = (touchLocation.clientY - (offY)) + 'px';
-    petal.style.left = (touchLocation.clientX - (offX)) + 'px';
+    touchLocation = e.touches[0];
+    petal.style.position = 'fixed';
+    petal.style.top = (touchLocation.clientY - offY) + 'px';
+    petal.style.left = (touchLocation.clientX - offX) + 'px';
   } else {
     petal.style.top = (e.clientY - offY) + 'px';
     petal.style.left = (e.clientX - offX) + 'px';

@@ -11,8 +11,7 @@ html, body {
   height: 100vh;
   margin: 0px;
   padding: 0px;
-  overflow-y: hidden;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 html, body:active {
@@ -28,6 +27,9 @@ html, body:active {
     position: relative;
     width: 500px;
     height: 500px;
+    left: 50%;
+    margin-left: -250px;
+
   }
 
   .flower-face-image {
@@ -140,7 +142,7 @@ html, body:active {
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  }
+}
 
 .falling {
   animation: fallAnimation 1s both ease-in;
