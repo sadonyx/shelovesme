@@ -2,7 +2,7 @@
 var song = document.createElement('audio');
 song.setAttribute('src', '/sounds/loves-me-zade-keys.ogg');
 song.loop = true;
-song.volume = 100;
+song.volume = 1;
 song.setAttribute('autoplay', 'autoplay');
 
 // initialize volume controls
@@ -22,22 +22,20 @@ volumeIcon.addEventListener('click', () => {
 //   song.volume = e.currentTarget.value / 100;
 // })
 
+// initialize sound effects
 var alternate = 1;
 
 var pluckDown = document.createElement('audio');
 pluckDown.setAttribute('src', '/sounds/pluck-down.ogg');
-pluckDown.volume = 100;
 
 var pluckOneUp = document.createElement('audio');
 pluckOneUp.setAttribute('src', '/sounds/pluck-1-up.ogg');
-pluckOneUp.volume = 100;
 
 var pluckTwoUp = document.createElement('audio');
 pluckTwoUp.setAttribute('src', '/sounds/pluck-2-up.ogg')
 
 var bellMeowBaaa = document.createElement('audio');
 bellMeowBaaa.setAttribute('src', '/sounds/bell-meow-baaa.ogg');
-bellMeowBaaa.volume = 100;
 
 var gameDOM = document.getElementById('g-container')
 
